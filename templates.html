@@ -1,0 +1,72 @@
+<!-- templates/dashboard.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Dashboard</h1>
+
+        <!-- Budget Setting Section -->
+        <div id="budgetSetting">
+            <h2>Set Budgets</h2>
+            <form id="budgetForm">
+                <div class="form-group">
+                    <label for="category">Category:</label>
+                    <select class="form-control" id="category" name="category">
+                        <!-- Populate this dropdown with categories from the database -->
+                        <option value="category1">Category 1</option>
+                        <option value="category2">Category 2</option>
+                        <!-- Add more options dynamically using JavaScript -->
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="amount">Amount:</label>
+                    <input type="number" class="form-control" id="amount" name="amount" placeholder="Enter budget amount">
+                </div>
+                <button type="submit" class="btn btn-primary">Set Budget</button>
+            </form>
+        </div>
+
+        <!-- Report Viewing Section -->
+        <div id="reportViewing">
+            <h2>View Reports</h2>
+            <div id="monthlySummary"></div>
+            <div id="expenseBreakdown"></div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Add your custom JavaScript code here -->
+    <script>
+        // JavaScript code for handling form submission and interacting with backend
+        $(document).ready(function() {
+            $('#budgetForm').submit(function(e) {
+                e.preventDefault();
+                // Send AJAX request to backend to set budget
+                // Update UI based on response from backend
+            });
+
+            // Fetch monthly summary report via AJAX
+            $.get('/reports/monthly_summary/2024/5', function(data) {
+                $('#monthlySummary').html('<h3>Monthly Summary Report</h3>');
+                // Display report data in HTML format
+                // Example: $('#monthlySummary').append('<p>Total Expenses: ' + data.total_expenses + '</p>');
+            });
+
+            // Fetch expense breakdown report via AJAX
+            $.get('/reports/expense_breakdown/2024/5', function(data) {
+                $('#expenseBreakdown').html('<h3>Expense Breakdown Report</h3>');
+                // Display report data in HTML format
+                // Example: $('#expenseBreakdown').append('<p>Category: ' + data.expense_breakdown[0].category + '</p>');
+            });
+        });
+    </script>
+</body>
+</html>

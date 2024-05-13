@@ -1,0 +1,12 @@
+# Ignore node_modules directory
+node_modules/
+
+# Ignore IDE files
+.idea/
+.vscode/
+
+# Ignore database files
+*.db
+
+# Ignore environment configuration
+.env
